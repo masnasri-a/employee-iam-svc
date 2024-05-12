@@ -1,0 +1,113 @@
+definitions:
+  model.ClientInput:
+    properties:
+      email:
+        type: string
+      full_name:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - full_name
+    - password
+    type: object
+  model.LoginInput:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  model.WorkspaceInput:
+    properties:
+      address:
+        type: string
+      created_by:
+        type: string
+      description:
+        type: string
+      name:
+        type: string
+      workspace_email:
+        type: string
+    required:
+    - address
+    - created_by
+    - description
+    - name
+    - workspace_email
+    type: object
+info:
+  contact: {}
+paths:
+  /client/create:
+    post:
+      consumes:
+      - application/json
+      description: create client
+      parameters:
+      - description: User details
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.ClientInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: ping example
+      tags:
+      - client
+  /client/login:
+    post:
+      consumes:
+      - application/json
+      description: Login Endpoint
+      parameters:
+      - description: Login Form
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.LoginInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Login
+      tags:
+      - client
+  /workspace/create:
+    post:
+      consumes:
+      - application/json
+      description: create client
+      parameters:
+      - description: User details
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.WorkspaceInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: ping example
+      tags:
+      - workspace
+swagger: "2.0"
